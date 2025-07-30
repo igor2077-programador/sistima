@@ -1,0 +1,33 @@
+
+.navbar{
+   /* background-color: brown !important;*/
+   background: linear-gradient(to right,rgb(36, 36, 145),rgb(0, 0, 0)) !important;  
+}
+.ul{
+    background-color: black;
+    height: 100vh;
+    list-style: none;
+}
+.menu-itens{
+    color: whitesmoke;
+    padding: 8px;
+    text-decoration: none;
+    font-size: 22px;
+}.fundo-login{
+    background-color: rgb(221, 221, 221);
+}.menu-itens:hover{
+    color: orange;}
+.painel{
+    background-color: rgb(62, 62, 131);
+    width: 350px;
+    height: 350px;
+    border-radius:20px ;
+    margin: auto;
+    margin-top: 100px;
+    padding: 15px;
+    
+}
+.cabesario{
+    color:floralwhite;
+    text-align: center;
+    font-size: 40px;}
