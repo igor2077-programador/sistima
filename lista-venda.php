@@ -30,9 +30,7 @@
     <div class="col-md-3">
       <label for="">region</label>
       <select name="" class="form-select">
-        <option ></option>
-        <option ></option>
-         <option>1</option>
+            <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
