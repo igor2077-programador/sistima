@@ -48,6 +48,9 @@
     <div class="col-2">
       
       <ul class="ul">
+        <p style="color;white;">
+           ben-vindo(a) <?php session_start(); echo $_SESSION['usuario']; ?>
+        </p>
         <li><a href="#" class="menu-itens"> <i class="fa-regular fa-user"></i>usuarios</a></li>
         <li><a href="#" class="menu-itens"><i class="fa-solid fa-map-pin"></i>regiao</a></li>
         <li><a href="#" class="menu-itens"><i class="fa-solid fa-city"></i>cidades</a></li>

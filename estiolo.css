@@ -20,14 +20,17 @@
 .painel{
     background-color: rgb(62, 62, 131);
     width: 350px;
-    height: 350px;
+    height: 550px;
     border-radius:20px ;
     margin: auto;
     margin-top: 100px;
     padding: 15px;
-    
+    padding-bottom: 500px;
 }
 .cabesario{
     color:floralwhite;
     text-align: center;
     font-size: 40px;}
+body{
+ height: 100vh;
+    }
