@@ -1,3 +1,8 @@
+<?php 
+  include './backend/conexao.php';
+  include './backend/validacao.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +41,7 @@
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="buscar" aria-label="Search"/>
         <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <a href="#" class="btn btn-outline-light ms-2 "><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a href="./backend/sair.php" class="btn btn-outline-light ms-2 "><i class="fa-solid fa-right-from-bracket"></i></a>
       </form>
      
     </div>
@@ -48,8 +53,8 @@
     <div class="col-2">
       
       <ul class="ul">
-        <p style="color;white;">
-           ben-vindo(a) <?php session_start(); echo $_SESSION['usuario']; ?>
+        <p style="color:white;">
+           ben-vindo <?php echo $_SESSION['usuario']; ?>
         </p>
         <li><a href="#" class="menu-itens"> <i class="fa-regular fa-user"></i>usuarios</a></li>
         <li><a href="#" class="menu-itens"><i class="fa-solid fa-map-pin"></i>regiao</a></li>
@@ -60,24 +65,26 @@
         <li><a href="#" class="menu-itens"><i class="fa-solid fa-magnifying-glass-dollar"></i>pesquisa de vendas</a></li>
       </ul>
     </div>
-         <div class="col-5">
+         <div class="col-3">
         <h1> Cadastro </h1>
 
         <form>
-          <div class="mb-3">
-            <label class="form-label"> CPF </label>
-            <input type="text" class="form-control .cpf">
-          </div>
+          
 
           <div class="mb-3">
             <label class="form-label"> E-mail </label>
             <input type="email" class="form-control">
           </div>
 
+          <div class="mb-3">
+            <label class="form-label"> CPF </label>
+            <input type="text" class="form-control .cpf">
+          </div> 
+
           <div class="mb-3 input-group">
             <label class="form-label">Senha</label>
             <div class="input-group">
-            <input type="password" class="form-control" id="senha">
+            <input type="password" class="form-control" id="senha" autocomplete="new-password">
             <span  onclick="visualizar()" style="cursor: pointer;"  class="input-group-text" ><i id="olho" class="fa-regular fa-eye"></i></span>
             </div>
           </div>
@@ -86,7 +93,7 @@
         </form>
       </div>
 
-      <div class="col-5">
+      <div class="col-7">
         <h1> Listagem </h1>
 
         <table id="tabela" class="table table-striped table-bordered" >
@@ -95,31 +102,32 @@
               <th scope="col">Id</th>
               <th scope="col">Nome</th>
               <th scope="col">E-mail</th>
+              <th scope="col"> cpf </th> 
               <th scope="col">Senha</th>
+               <th>Opcoes</th>
             </tr>
           </thead>
           <tbody>
+            <?php
+              $sql="select * from usuario";
+              $dados = mysqli_query($conexao, $sql);
+              while($colunas=mysqli_fetch_assoc($dados)){
+            ?>
             <tr>
-              <th scope="row">1</th>
-              <td> Stênio </td>
-              <td> Stenio@gmail.com </td>
-              <td> 123 </td>
+              <th scope="row"><?php echo $colunas['id'] ?></th>
+              <td> <?php echo $colunas['nome'] ?></td>
+              <td> <?php echo $colunas['email'] ?> </td>
+              <td> <?php echo $colunas['cpf'] ?> </td>
+              <td> <?php echo $colunas['senha'] ?></td>
+              <td>
+                <a href="#"><i class="fa-solid fa-pencil"></i></a>
+                <a href="#"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
+              </td>
             </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Arlindo</td>
-              <td>Arlindo@gmail.com</td>
-              <td>lindo123</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Maria</td>
-              <td>Maria@gmail.com</td>
-              <td>MariaMaria</td>
-            </tr>
+          <?php } ?>
           </tbody>
         </table>
-      </div>
+</div>
 
 
   <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />

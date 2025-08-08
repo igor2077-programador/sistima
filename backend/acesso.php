@@ -10,9 +10,9 @@
 
     if(mysqli_num_rows($resultado) > 0){
         session_start();
-        $_SESSION ['usuario'] = $coluna['nome'];
-        $_SESSION ['cpf'] = $coluna['cpf'];
-        $_SESSION ['senha'] = $coluna['senha'];
+        $_SESSION['usuario'] = $colunas['nome'];
+        $_SESSION['cpf'] = $colunas['cpf'];
+        $_SESSION['senha'] = $colunas['senha'];
         
         header('location:../principal.php');
     }else{
