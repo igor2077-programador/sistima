@@ -68,23 +68,28 @@
          <div class="col-3">
         <h1> Cadastro </h1>
 
-        <form>
+        <form action="./backend/usuario/inserir.php"method="post">
           
 
           <div class="mb-3">
+            <label class="form-label"> nome </label>
+            <input name="nome" type="" class="form-control">
+          </div>
+
+          <div class="mb-3">
             <label class="form-label"> E-mail </label>
-            <input type="email" class="form-control">
+            <input name="email" type="email" class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label"> CPF </label>
-            <input type="text" class="form-control .cpf">
+            <input name="cpf" type="text" class="form-control .cpf">
           </div> 
 
           <div class="mb-3 input-group">
             <label class="form-label">Senha</label>
             <div class="input-group">
-            <input type="password" class="form-control" id="senha" autocomplete="new-password">
+            <input name="senha" type="password" class="form-control" id="senha" autocomplete="new-password">
             <span  onclick="visualizar()" style="cursor: pointer;"  class="input-group-text" ><i id="olho" class="fa-regular fa-eye"></i></span>
             </div>
           </div>
@@ -120,8 +125,8 @@
               <td> <?php echo $colunas['cpf'] ?> </td>
               <td> <?php echo $colunas['senha'] ?></td>
               <td>
-                <a href="#"><i class="fa-solid fa-pencil"></i></a>
-                <a href="#"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
+                <a href="#"><i class="fa-solid fa-pencil me-2"></i></a>
+                <a href=<?php echo"./backend/usuario/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
               </td>
             </tr>
           <?php } ?>
