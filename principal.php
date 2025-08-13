@@ -1,6 +1,17 @@
 <?php 
   include './backend/conexao.php';
   include './backend/validacao.php';
+
+  $destino="./backend/usuario/inserir.php";
+
+  if(!empty($_get['id'])){
+    $id=$_GET['id'];
+    $SQL="SELECT * FRON usuario where id='$id' ";
+
+    $dados=mysqli_query($conexao, $sql);
+    $usuarios=mysqli_fetch_assoc($dados);
+    $destino="./backend/usuario/alterar.php";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -21,26 +32,25 @@ integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5m
 crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/notify.js/2.0.0/notify.js"
- integrity="sha512-5i8WZpj1KyBZdb4G/qae5tjnfDsENLR6hPzA7sBS7kG+9wvbhq3EQ9u487QcXPETLdzgp6j5n5qiFGeBAX4HhQ==" 
- crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/notify.js/2.0.0/notify.js"
- integrity="sha512-5i8WZpj1KyBZdb4G/qae5tjnfDsENLR6hPzA7sBS7kG+9wvbhq3EQ9u487QcXPETLdzgp6j5n5qiFGeBAX4HhQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 </head>
 <body>
   <?php
-       if(isset($_SESSION['mensagem'])){
-     }echo "<script>
-      var notyf = new Notyf({const notyf = new Notyf({
-        duration: 1000,
-        position: {
-          x: '4000',
-          y: '4000',
-        },
-      });
-      notyf.error("$_SESSION['mensagem']");
-     </script>";
-    ?>
+      if(isset($_SESSION['mensagem'])){
+        echo "<script>
+          var notyf = new Notyf({
+            duration: 1000,
+              position: {
+                x: 'right',
+                y: 'top',
+              },
+            });
+          notyf.success(' ".$_SESSION['mensagem']." ');
+        </script>";
+      unset($_SESSION['mensagem']);
+    }
+  ?>
     <nav class="navbar navbar-expand-lg navbar-dark navegacao ">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><i class="fa-solid fa-handshake"></i>RICS</a>
@@ -151,7 +161,7 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
               <td> <?php echo $colunas['cpf'] ?> </td>
               <td> <?php echo $colunas['senha'] ?></td>
               <td>
-                <a href="#"><i class="fa-solid fa-pencil me-2"></i></a>
+                <a href="./principal.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
                 <a href=<?php echo"./backend/usuario/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
               </td>
             </tr>
