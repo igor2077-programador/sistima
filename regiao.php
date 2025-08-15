@@ -2,15 +2,15 @@
   include './backend/conexao.php';
   include './backend/validacao.php';
 
-  $destino="./backend/usuario/inserir.php";
+  $destino="./backend/regiao/inserir.php";
 
   if(!empty($_GET['id'])){
     $id=$_GET['id'];
-    $sql="SELECT * FROM usuario where id='$id' ";
+    $sql="SELECT * FROM regiao where id='$id' ";
 
     $dados=mysqli_query($conexao, $sql);
-    $usuarios=mysqli_fetch_assoc($dados);
-    $destino="./backend/usuario/alterar.php";
+    $regios=mysqli_fetch_assoc($dados);
+    $destino="./backend/regiao/alterar.php";
   }
 ?>
 
@@ -87,52 +87,32 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
 <div class="container-fluid">
   <div class="row">
     <div class="col-2">
-      
       <ul class="ul">
         <p style="color:white;">
-           ben-vindo <?php echo $_SESSION['usuario']; ?>
-        </p>
-          <li><a href="usuarios.php" class="menu-itens"> <i class="fa-regular fa-user"></i>usuarios</a></li>
-          <li><a href="regiao.php" class="menu-itens"><i class="fa-solid fa-map-pin"></i>regiao</a></li>
-          <li><a href="cidades.php" class="menu-itens"><i class="fa-solid fa-city"></i>cidades</a></li>
-          <li><a href="pontos_focais.php" class="menu-itens"><i class="fa-solid fa-user-tie"></i>pontos focais</a></li>
-          <li><a href="areas.php" class="menu-itens"><i class="fa-solid fa-graduation-cap"></i>areas</a></li>
-          <li><a href="efetuar_vendas.php" class="menu-itens"><i class="fa-solid fa-cart-shopping"></i>efetuar vendas</a></li>
-          <li><a href="pesquisa_de_vendas.php" class="menu-itens"><i class="fa-solid fa-magnifying-glass-dollar"></i>pesquisa de vendas</a></li>
+        bem_vimdo <?php echo $_SESSION['usuario']?>
+        <li><a href="usuario.php" class="menu-itens"> <i class="fa-regular fa-user"></i>usuario</a></li>
+        <li><a href="regiao.php" class="menu-itens"><i class="fa-solid fa-map-pin"></i>regiao</a></li>
+        <li><a href="cidades.php" class="menu-itens"><i class="fa-solid fa-city"></i>cidades</a></li>
+        <li><a href="pontos_focais.php" class="menu-itens"><i class="fa-solid fa-user-tie"></i>pontos focais</a></li>
+        <li><a href="areas.php" class="menu-itens"><i class="fa-solid fa-graduation-cap"></i>areas</a></li>
+        <li><a href="efetuar_vendas.php" class="menu-itens"><i class="fa-solid fa-cart-shopping"></i>efetuar vendas</a></li>
+        <li><a href="pesquisa_de_vendas.php" class="menu-itens"><i class="fa-solid fa-magnifying-glass-dollar"></i>pesquisa de vendas</a></li>
       </ul>
     </div>
          <div class="col-3">
         <h1> Cadastro </h1>
 
         <form action="<?=$destino?>"method="post">
-          
           <div class="mb-3">
             <label class="form-label">ID</label>
-            <input readonly name="id" type="" value="<?php echo isset($usuarios) ? $usuarios['id']: "" ?> " class="form-control">
+            <input readonly name="id" type="" value="<?php echo isset($regios) ? $regios['id']: "" ?> " class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label"> nome </label>
-            <input name="nome" type="" value="<?php echo isset($usuarios) ? $usuarios['nome']: "" ?>"class="form-control">
+            <input name="nome" type="" value="<?php echo isset($regios) ? $regios['nome']: "" ?>"class="form-control">
           </div>
 
-          <div class="mb-3">
-            <label class="form-label"> E-mail </label>
-            <input name="email" type="email" type="" value="<?php echo isset($usuarios) ? $usuarios['email']: "" ?>" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label"> CPF </label>
-            <input name="cpf" type="text" type="" value="<?php echo isset($usuarios) ? $usuarios['cpf']: "" ?>" class="form-control cpf">
-          </div> 
-
-          <div class="mb-3 input-group">
-            <label class="form-label">Senha</label>
-            <div class="input-group">
-            <input name="senha" type="password" type="" value="<?php echo isset($usuarios) ?  $usuarios['senha']: "" ?>" class="form-control" id="senha" autocomplete="new-password">
-            <span  onclick="visualizar()" style="cursor: pointer;"  class="input-group-text" ><i id="olho" class="fa-regular fa-eye"></i></span>
-            </div>
-          </div>
 
           <button type="submit" class="btn btn-primary"> Salvar </button>
         </form>
@@ -146,27 +126,21 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
             <tr>
               <th scope="col">Id</th>
               <th scope="col">Nome</th>
-              <th scope="col">E-mail</th>
-              <th scope="col"> cpf </th> 
-              <th scope="col">Senha</th>
-               <th>Opcoes</th>
+              <th scope="col">opecoes</th>
             </tr>
           </thead>
           <tbody>
             <?php
-              $sql="select * from usuario";
+              $sql="select * from regiao";
               $dados = mysqli_query($conexao, $sql);
               while($colunas=mysqli_fetch_assoc($dados)){
             ?>
             <tr>
               <th scope="row"><?php echo $colunas['id'] ?></th>
               <td> <?php echo $colunas['nome'] ?></td>
-              <td> <?php echo $colunas['email'] ?> </td>
-              <td> <?php echo $colunas['cpf'] ?> </td>
-              <td> <?php echo $colunas['senha'] ?></td>
               <td>
                 <a href="./principal.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
-                <a href=<?php echo"./backend/usuario/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
+                <a href=<?php echo"./backend/regiao/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
               </td>
             </tr>
           <?php } ?>
