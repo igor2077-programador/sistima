@@ -14,6 +14,6 @@ mysqli_query($conexao, $sql);
 session_start();
 $_SESSION['mensagem']="$nome ALTERADO COM SUSSESO";
 
-header('location:../../principal.php');
+header('location:../../usuario.php');
 
 ?>

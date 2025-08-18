@@ -110,7 +110,7 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
 
           <div class="mb-3">
             <label class="form-label"> nome </label>
-            <input name="nome" type="" value="<?php echo isset($regios) ? $regios['nome']: "" ?>"class="form-control">
+            <input name="nome" type="" value="<?php echo isset($regio) ? $regios['nome']: "" ?>"class="form-control">
           </div>
 
 
@@ -139,7 +139,7 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
               <th scope="row"><?php echo $colunas['id'] ?></th>
               <td> <?php echo $colunas['nome'] ?></td>
               <td>
-                <a href="./principal.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
+                <a href="./regiao.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
                 <a href=<?php echo"./backend/regiao/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
               </td>
             </tr>

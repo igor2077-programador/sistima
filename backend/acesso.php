@@ -14,7 +14,7 @@
         $_SESSION['cpf'] = $colunas['cpf'];
         $_SESSION['senha'] = $colunas['senha'];
         
-        header('location:../principal.php');
+        header('location:../usuario.php');
     }else{
         header('location:../index.php?erro=1');
     }

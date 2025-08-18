@@ -2,15 +2,15 @@
   include './backend/conexao.php';
   include './backend/validacao.php';
 
-  $destino="./backend/usuario/inserir.php";
+  $destino="./backend/cidade/inserir.php";
 
   if(!empty($_GET['id'])){
     $id=$_GET['id'];
-    $sql="SELECT * FROM usuario where id='$id' ";
+    $sql="SELECT * FROM cidade where id='$id' ";
 
     $dados=mysqli_query($conexao, $sql);
-    $usuarios=mysqli_fetch_assoc($dados);
-    $destino="./backend/usuario/alterar.php";
+    $cidades=mysqli_fetch_assoc($dados);
+    $destino="./backend/cidade/alterar.php";
   }
 ?>
 
@@ -92,7 +92,7 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
         <p style="color:white;">
            ben-vindo <?php echo $_SESSION['usuario']; ?>
         </p>
-          <li><a href="usuarios.php" class="menu-itens"> <i class="fa-regular fa-user"></i>usuarios</a></li>
+          <li><a href="cidades.php" class="menu-itens"> <i class="fa-regular fa-user"></i>cidades</a></li>
           <li><a href="regiao.php" class="menu-itens"><i class="fa-solid fa-map-pin"></i>regiao</a></li>
           <li><a href="cidades.php" class="menu-itens"><i class="fa-solid fa-city"></i>cidades</a></li>
           <li><a href="pontos_focais.php" class="menu-itens"><i class="fa-solid fa-user-tie"></i>pontos focais</a></li>
@@ -108,28 +108,28 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
           
           <div class="mb-3">
             <label class="form-label">ID</label>
-            <input readonly name="id" type="" value="<?php echo isset($usuarios) ? $usuarios['id']: "" ?> " class="form-control">
+            <input readonly name="id" type="" value="<?php echo isset($cidades) ? $cidades['id']: "" ?> " class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label"> nome </label>
-            <input name="nome" type="" value="<?php echo isset($usuarios) ? $usuarios['nome']: "" ?>"class="form-control">
+            <input name="nome" type="" value="<?php echo isset($cidades) ? $cidades['nome']: "" ?>"class="form-control">
           </div>
 
           <div class="mb-3">
-            <label class="form-label"> E-mail </label>
-            <input name="email" type="email" type="" value="<?php echo isset($usuarios) ? $usuarios['email']: "" ?>" class="form-control">
+            <label class="form-label">cep </label>
+            <input name="cep" type="cep" type="" value="<?php echo isset($cidades) ? $cidades['cep']: "" ?>" class="form-control">
           </div>
 
           <div class="mb-3">
-            <label class="form-label"> CPF </label>
-            <input name="cpf" type="text" type="" value="<?php echo isset($usuarios) ? $usuarios['cpf']: "" ?>" class="form-control cpf">
+            <label class="form-label"> estado </label>
+            <input name="estado" type="text" type="" value="<?php echo isset($cidades) ? $cidades['estado']: "" ?>" class="form-control estado">
           </div> 
 
           <div class="mb-3 input-group">
-            <label class="form-label">Senha</label>
+            <label class="form-label">regiao</label>
             <div class="input-group">
-            <input name="senha" type="password" type="" value="<?php echo isset($usuarios) ?  $usuarios['senha']: "" ?>" class="form-control" id="senha" autocomplete="new-password">
+            <input name="id_regiao_fk" type="password" type="" value="<?php echo isset($cidades) ?  $cidades['id_regiao_fk']: "" ?>" class="form-control" id="regiao" autocomplete="new-password">
             <span  onclick="visualizar()" style="cursor: pointer;"  class="input-group-text" ><i id="olho" class="fa-regular fa-eye"></i></span>
             </div>
           </div>
@@ -146,27 +146,27 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
             <tr>
               <th scope="col">Id</th>
               <th scope="col">Nome</th>
-              <th scope="col">E-mail</th>
-              <th scope="col"> cpf </th> 
-              <th scope="col">Senha</th>
+              <th scope="col">cep</th>
+              <th scope="col"> estado </th> 
+              <th scope="col">id_regiao_fk</th>
                <th>Opcoes</th>
             </tr>
           </thead>
           <tbody>
             <?php
-              $sql="select * from usuario";
+              $sql="select * from cidade";
               $dados = mysqli_query($conexao, $sql);
               while($colunas=mysqli_fetch_assoc($dados)){
             ?>
             <tr>
               <th scope="row"><?php echo $colunas['id'] ?></th>
               <td> <?php echo $colunas['nome'] ?></td>
-              <td> <?php echo $colunas['email'] ?> </td>
-              <td> <?php echo $colunas['cpf'] ?> </td>
-              <td> <?php echo $colunas['senha'] ?></td>
+              <td> <?php echo $colunas['cep'] ?> </td>
+              <td> <?php echo $colunas['estado'] ?> </td>
+              <td> <?php echo $colunas['id_regiao_fk'] ?></td>
               <td>
-                <a href="./principal.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
-                <a href=<?php echo"./backend/usuario/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
+                <a href="./cidades.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
+                <a href=<?php echo"./backend/cidade/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
               </td>
             </tr>
           <?php } ?>

@@ -13,5 +13,5 @@ session_start();
 $_SESSION['mensagem']="Cadastrado com Successo!";
 
 $resultado = mysqli_query($conexao, $sql);
-header('location:../../principal.php');
+header('location:../../usuario.php');
 ?>
