@@ -1,6 +1,7 @@
 <?php 
   include './backend/conexao.php';
   include './backend/validacao.php';
+  include './recusos/cabecalho.php';
 
   $destino="./backend/regiao/inserir.php";
 
@@ -14,90 +15,17 @@
   }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estiolo.css">
-    <title>sistema.R.I.C.S</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
-     crossorigin="anonymous" 
-     referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" 
-rel="stylesheet" 
-integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" 
-crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-</head>
+
+
 <body>
-  <?php
-      if(isset($_SESSION['mensagem'])){
-        echo "<script>
-          var notyf = new Notyf({
-            duration: 1000,
-              position: {
-                x: 'right',
-                y: 'top',
-              },
-            });
-          notyf.success(' ".$_SESSION['mensagem']." ');
-        </script>";
-      unset($_SESSION['mensagem']);
-    }
-  ?>
-    <nav class="navbar navbar-expand-lg navbar-dark navegacao ">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><i class="fa-solid fa-handshake"></i>RICS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-     aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-house"></i></a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            opçaos
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="buscar" aria-label="Search"/>
-        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <a href="./backend/sair.php" class="btn btn-outline-light ms-2 "><i class="fa-solid fa-right-from-bracket"></i></a>
-      </form>
-     
-    </div>
-  </div>
-</nav>
+
+ <?php include './recusos/menu-superior.php'; ?>
+
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-2">
-      <ul class="ul">
-        <p style="color:white;">
-        bem_vimdo <?php echo $_SESSION['usuario']?>
-        <li><a href="usuario.php" class="menu-itens"> <i class="fa-regular fa-user"></i>usuario</a></li>
-        <li><a href="regiao.php" class="menu-itens"><i class="fa-solid fa-map-pin"></i>regiao</a></li>
-        <li><a href="cidades.php" class="menu-itens"><i class="fa-solid fa-city"></i>cidades</a></li>
-        <li><a href="pontos_focais.php" class="menu-itens"><i class="fa-solid fa-user-tie"></i>pontos focais</a></li>
-        <li><a href="areas.php" class="menu-itens"><i class="fa-solid fa-graduation-cap"></i>areas</a></li>
-        <li><a href="efetuar_vendas.php" class="menu-itens"><i class="fa-solid fa-cart-shopping"></i>efetuar vendas</a></li>
-        <li><a href="pesquisa_de_vendas.php" class="menu-itens"><i class="fa-solid fa-magnifying-glass-dollar"></i>pesquisa de vendas</a></li>
-      </ul>
+      <?php include './recusos/menu-laterau.php'; ?>
     </div>
          <div class="col-3">
         <h1> Cadastro </h1>
@@ -110,7 +38,7 @@ integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O
 
           <div class="mb-3">
             <label class="form-label"> nome </label>
-            <input name="nome" type="" value="<?php echo isset($regio) ? $regios['nome']: "" ?>"class="form-control">
+            <input name="nome" type="" value="<?php echo isset($regios) ? $regios['nome']: "" ?>"class="form-control">
           </div>
 
 

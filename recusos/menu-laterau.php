@@ -2,10 +2,10 @@
     <p style="color:white;">
        ben-vindo <?php echo $_SESSION['usuario']; ?>
     </p>
-            <li><a href="usuario.php" class="menu-itens"> <i class="fa-regular fa-user"></i>usuarios</a></li>
+            <li><a href="usuario.php" class="menu-itens"> <i class="fa-regular fa-user"></i>usuario</a></li>
             <li><a href="regiao.php" class="menu-itens"><i class="fa-solid fa-map-pin"></i>regiao</a></li>
             <li><a href="cidades.php" class="menu-itens"><i class="fa-solid fa-city"></i>cidades</a></li>
-            <li><a href="pontos_focais.php" class="menu-itens"><i class="fa-solid fa-user-tie"></i>pontos focais</a></li>
+            <li><a href="ponto-focal.php" class="menu-itens"><i class="fa-solid fa-user-tie"></i>pontos focais</a></li>
             <li><a href="areas.php" class="menu-itens"><i class="fa-solid fa-graduation-cap"></i>areas</a></li>
             <li><a href="efetuar_vendas.php" class="menu-itens"><i class="fa-solid fa-cart-shopping"></i>efetuar vendas</a></li>
             <li><a href="pesquisa_de_vendas.php" class="menu-itens"><i class="fa-solid fa-magnifying-glass-dollar"></i>pesquisa de vendas</a></li>      

@@ -23,7 +23,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-2">
-        <?php include './recusos/menu-lateral.php'; ?>
+        <?php include './recusos/menu-laterau.php'; ?>
       </div>
           <div class="col-3">
           <h1> Cadastro </h1>
