@@ -43,7 +43,7 @@
 
           <div class="mb-3">
             <label class="form-label">cep </label>
-            <input name=".cep" type=".cep" value="<?php echo isset($cidades) ? $cidades['cep']: "" ?>" class="form-control">
+            <input name="cep" type="cep" value="<?php echo isset($cidades) ? $cidades['cep']: "" ?>" class="form-control cep">
           </div>
 
           <div class="mb-3">

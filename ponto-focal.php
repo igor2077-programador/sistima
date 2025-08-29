@@ -48,12 +48,15 @@
 
           <div class="mb-3">
             <label class="form-label"> tipo </label>
-            <input name="tipo" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['tipo']: "" ?>" class="form-control tipo">
+            <select class="form-select" id="">
+              <option value="privada">privada</option>
+              <option value="publica">publica</option>
+            </select>
           </div> 
 
           <div class="mb-3">
             <label class="form-label"> cnpj </label>
-            <input name=".cnpj" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['cnpj_cpf']: "" ?>" class="form-control cnpj_cpf">
+            <input name=".cnpj" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['cnpj_cpf']: "" ?>" class="form-control cnpj">
           </div> 
 
           <div class="mb-3">
@@ -63,12 +66,12 @@
 
           <div class="mb-3">
             <label class="form-label"> telefone </label>
-            <input name="telefone" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['telefone']: "" ?>" class="form-control telefone">
+            <input name="telefone" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['telefone']: "" ?>" class="form-control celuLAR_with_ddd">
           </div> 
 
           <div class="mb-3">
             <label class="form-label"> celular </label>
-            <input name="celular" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['celular']: "" ?>" class="form-control celular">
+            <input name="celular" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['celular']: "" ?>" class="form-control celuLAR_with_ddd">
           </div> 
 
           <div class="mb-3">
@@ -79,6 +82,19 @@
           <div class="mb-3">
             <label class="form-label"> cidade </label>
             <input name="id_cidade_fk" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['id_cidade_fk']: "" ?>" class="form-control id_cidade_fk">
+                          <select name = "id_cidade_fk" class="form-select" require> <!--  -->
+                <option>selecione uma cidade</option>
+                  <?php 
+                    $sql="select * from cidade order by nome";
+                    $resultado=mysqli_query($conexao, $sql);
+                    $cidadeselesonada = isset($cidade) ? $cidade['id_cidade_fk']:'';
+
+                    while ($reg=mysqli_fetch_assoc($resultado)) {
+                      $selecao=($reg['id'] == $cidadeselesonada) ?'SELECIONE':'';
+                      echo"<option value='{$reg['id']}'$selecao>{$reg['nome']} </option>";
+                    }
+                  ?>
+              <select>  
           </div>
 
 
