@@ -1,7 +1,7 @@
 <?php 
   include './backend/conexao.php';
   include './backend/validacao.php';
-  include './recusos/cabecalho.php';
+  include './recursos/cabecalho.php';
 
   $destino="./backend/ponto_focal/inserir.php";
 
@@ -18,67 +18,67 @@
 
 <body>
 
-<?php include './recusos/menu-superior.php'; ?>
+<?php include './recursos/menu-superior.php'; ?>
 
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-2">
-      <?php include './recusos/menu-laterau.php'; ?>
+      <?php include './recursos/menu-laterau.php'; ?>
     </div>
-         <div class="col-3">
+         <div class="col-2">
         <h1> Cadastro </h1>
 
         <form action="<?=$destino?>"method="post">
           
           <div class="mb-3">
             <label class="form-label">ID</label>
-            <input readonly name="id" type="" value="<?php echo isset($ponto_focals) ? $ponto_focal['id']: "" ?> " class="form-control">
+            <input readonly name="id" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['id']: "" ?> " class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label"> nome </label>
-            <input name="nome" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['nome']: "" ?>"class="form-control">
+            <input name="nome" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['nome']: "" ?>"class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label">razao social </label>
-            <input name="razao_social" type="razao_social" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['razao_social']: "" ?>" class="form-control">
+            <input name="razao_social" type="razao_social" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['razao_social']: "" ?>" class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label"> tipo </label>
-            <input name="tipo" type="text" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['tipo']: "" ?>" class="form-control tipo">
+            <input name="tipo" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['tipo']: "" ?>" class="form-control tipo">
           </div> 
 
           <div class="mb-3">
             <label class="form-label"> cnpj </label>
-            <input name="cnpj_cpf" type="text" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['cnpj_cpf']: "" ?>" class="form-control cnpj_cpf">
+            <input name=".cnpj" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['cnpj_cpf']: "" ?>" class="form-control cnpj_cpf">
           </div> 
 
           <div class="mb-3">
             <label class="form-label"> endereco </label>
-            <input name="endereco" type="text" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['endereco']: "" ?>" class="form-control endereco">
+            <input name="endereco" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['endereco']: "" ?>" class="form-control endereco">
           </div> 
 
           <div class="mb-3">
             <label class="form-label"> telefone </label>
-            <input name="telefone" type="text" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['telefone']: "" ?>" class="form-control telefone">
+            <input name="telefone" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['telefone']: "" ?>" class="form-control telefone">
           </div> 
 
           <div class="mb-3">
             <label class="form-label"> celular </label>
-            <input name="celular" type="text" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['celular']: "" ?>" class="form-control celular">
+            <input name="celular" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['celular']: "" ?>" class="form-control celular">
           </div> 
 
           <div class="mb-3">
             <label class="form-label"> email </label>
-            <input name="email" type="text" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['email']: "" ?>" class="form-control email">
+            <input name="email" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['email']: "" ?>" class="form-control email">
           </div> 
 
           <div class="mb-3">
             <label class="form-label"> cidade </label>
-            <input name="id_cidade_fk" type="text" type="" value="<?php echo isset($ponto_focals) ? $ponto_focals['id_cidade_fk']: "" ?>" class="form-control id_cidade_fk">
+            <input name="id_cidade_fk" type="text" type="" value="<?php echo isset($ponto_focal) ? $ponto_focal['id_cidade_fk']: "" ?>" class="form-control id_cidade_fk">
           </div>
 
 
@@ -90,7 +90,7 @@
         </form>
       </div>
 
-      <div class="col-7">
+      <div class="col-8">
         <h1> Listagem </h1>
 
         <table id="tabela" class="table table-striped table-bordered" >
@@ -105,6 +105,7 @@
               <th scope="col">telefone</th>
               <th scope="col">celular</th>
               <th scope="col">email</th>
+              <th scope="col">Opcoes</th>
                <th>Opcoes</th>
             </tr>
           </thead>
@@ -124,8 +125,10 @@
               <td> <?php echo $colunas['telefone'] ?></td>
               <td> <?php echo $colunas['celular'] ?></td>
               <td> <?php echo $colunas['email'] ?></td>
+              <td> <?php echo $colunas['id_cidade_fk'] ?></td>
+
               <td>
-                <a href="./ponto_focals.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
+                <a href="./ponto-focal.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
                 <a href=<?php echo"./backend/ponto_focal/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
               </td>
             </tr>

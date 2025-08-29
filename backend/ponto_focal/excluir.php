@@ -2,7 +2,7 @@
 include '../conexao.php';
 
 $id=$_REQUEST['id'];
-$sql="delete from ponto-focal where id='$id' ";
+$sql="delete FROM ponto_focal where id='$id' ";
 $resutado=mysqli_query($conexao, $sql);
 
 session_start();

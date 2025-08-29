@@ -1,7 +1,7 @@
 <?php 
   include './backend/conexao.php';
   include './backend/validacao.php';
-  include './recusos/cabecalho.php';
+  include './recursos/cabecalho.php';
 
   $destino="./backend/regiao/inserir.php";
 
@@ -19,13 +19,13 @@
 
 <body>
 
- <?php include './recusos/menu-superior.php'; ?>
+ <?php include './recursos/menu-superior.php'; ?>
 
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-2">
-      <?php include './recusos/menu-laterau.php'; ?>
+      <?php include './recursos/menu-laterau.php'; ?>
     </div>
          <div class="col-3">
         <h1> Cadastro </h1>

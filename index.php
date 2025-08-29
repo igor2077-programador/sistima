@@ -5,7 +5,7 @@
     <meta name="viewport"
      content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" 
-      href="./recusos/login-estilo.css">
+      href="./recursos/login-estilo.css">
     <title>sistema.R.I.C.S</title>
     <link rel="stylesheet" 
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
@@ -79,7 +79,7 @@
     </div>
 <div id="particles-js"></div><script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js">
 </script> <!-- stats.js lib --> <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
-  <script src="./recusos/login.js"></script>
+  <script src="./recursos/login.js"></script>
   <link rel="stylesheet" 
      href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 

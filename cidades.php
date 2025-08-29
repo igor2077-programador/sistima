@@ -1,7 +1,7 @@
 <?php 
   include './backend/conexao.php';
   include './backend/validacao.php';
-  include './recusos/cabecalho.php';
+  include './recursos/cabecalho.php';
 
   $destino="./backend/cidade/inserir.php";
 
@@ -18,13 +18,13 @@
 
 <body>
 
-<?php include './recusos/menu-superior.php'; ?>
+<?php include './recursos/menu-superior.php'; ?>
 
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-2">
-      <?php include './recusos/menu-laterau.php'; ?>
+      <?php include './recursos/menu-laterau.php'; ?>
     </div>
          <div class="col-3">
         <h1> Cadastro </h1>
@@ -38,12 +38,12 @@
 
           <div class="mb-3">
             <label class="form-label"> nome </label>
-            <input name="nome" type="" value="<?php echo isset($cidades) ? $cidades['nome']: "" ?>"class="form-control">
+            <input name="nome" type="text" value="<?php echo isset($cidades) ? $cidades['nome']: "" ?>"class="form-control">
           </div>
 
           <div class="mb-3">
             <label class="form-label">cep </label>
-            <input name="cep" type="cep" type="" value="<?php echo isset($cidades) ? $cidades['cep']: "" ?>" class="form-control">
+            <input name=".cep" type=".cep" value="<?php echo isset($cidades) ? $cidades['cep']: "" ?>" class="form-control">
           </div>
 
           <div class="mb-3">
@@ -51,13 +51,19 @@
             <input name="estado" type="text" type="" value="<?php echo isset($cidades) ? $cidades['estado']: "" ?>" class="form-control estado">
           </div> 
 
-          <div class="mb-3 input-group">
+          <div class="mb-3 ">
             <label class="form-label">regiao</label>
-              <select name = "regiao" class="form-select" require>
+              <select name = "id_regiao_fk" class="form-select" require> <!--  -->
                 <option>selecione uma regiao</option>
                   <?php 
-                    $sql="select * fron regiao order by nome";
+                    $sql="select * from regiao order by nome";
                     $resultado=mysqli_query($conexao, $sql);
+                    $regiaoselesonada = isset($cidade) ? $cidade['id_regiao_fk']:'';
+
+                    while ($reg=mysqli_fetch_assoc($resultado)) {
+                      $selecao=($reg['id'] == $regiaoselesonada) ?'SELECIONE':'';
+                      echo"<option value='{$reg['id']}'$selecao>{$reg['nome']} </option>";
+                    }
                   ?>
               <select>  
           </div>
@@ -91,7 +97,12 @@
               <td> <?php echo $colunas['nome'] ?></td>
               <td> <?php echo $colunas['cep'] ?> </td>
               <td> <?php echo $colunas['estado'] ?> </td>
-              <td> <?php echo $colunas['id_regiao_fk'] ?></td>
+              <?php 
+                $sql="select * from regiao where id=" .$colunas['id_regiao_fk'];
+                $resultado=mysqli_query($conexao, $sql);
+                $regiao = mysqli_fetch_assoc($resultado);
+              ?>
+              <td> <?php echo $regiao['nome'] ?></td>
               <td>
                 <a href="./cidades.php?id=<?= $colunas['id'] ?>"> <i class="fa-solid fa-pencil me-2"></i></a>
                 <a href=<?php echo"./backend/cidade/excluir.php?id=".$colunas['id'] ?> onclick="return confirm('deseja realmente exclur?')"><i class="fa-solid fa-trash-can" style="color: #db0606;"></i></a>
