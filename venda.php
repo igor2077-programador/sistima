@@ -30,54 +30,24 @@ crossorigin="anonymous"></script>
       <div class="row">
         <div class="col-md-4">
           <label for="">region</label>
-          <select class="form-select" id="">
+          <select name="regioa_id" id="regioa_id" required class="form-select">
 
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-            <option>13</option>
-            <option>14</option>
-            <option>15</option>
-            <option>16</option>
-            <option>17</option>
-            <option>18</option>
-            <option>19</option>
-            <option>20</option>
-            <option>21</option>
-            <option>22</option>
-            <option>23</option>
-            <option>24</option>
-            <option>25</option>
-            <option>26</option>
-            <option>27</option>
-            <option>28</option>
-            <option>29</option>
-            <option>30</option>
-            <option>31</option>
-            <option>32</option>
-            <option>33</option>
-            <option>34</option>
-            <option>35</option>
-            <option>36</option>
-            <option>37</option>
+            <option>selecione</option>
+            <?php 
+                include"./backend/conexao.php";
+                 $regioes=mysqli_query($conexao,"SELECT * from regiao order by nome");
+                    while ($reg=mysqli_fetch_assoc($regioes)) {
+                      echo"<option value='{$reg['id']}'>{$reg['nome']} </option>";
+                    }
+            ?>
 
           </select>
         </div>
         <div class="col-md-4">
           <label for="">cidade</label>
-          <select name="" class="form-select">
-            <option value="">marilena</option>
-            <option value="">nova londrina</option>
+          <select name="cidade_id" id="cidade_id" required class="form-select">
+            <option value="">selecione</option>
+            
           </select>
         </div>
 
@@ -136,9 +106,10 @@ crossorigin="anonymous"></script>
    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" 
    crossorigin="anonymous" 
    referrerpolicy="no-referrer"></script>
-
   <script src="script.js"></script>
   
-
+ <script>
+  $('#regioa_id').on('change',function(){alert("funcionou!");})
+ </script>
 </body>
 </html>
