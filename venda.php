@@ -26,11 +26,11 @@ crossorigin="anonymous"></script>
 
   <div class="container mt-4">
     <h2>venda de areas</h2>
-    <form action="">
+    <form action="./backend/venda/salvar_venda.php" method="post">
       <div class="row">
         <div class="col-md-4">
           <label for="">region</label>
-          <select name="regioa_id" id="regioa_id" required class="form-select">
+          <select name="regiao_id" id="regiao_id" required class="form-select">
 
             <option>selecione</option>
             <?php 
@@ -52,34 +52,39 @@ crossorigin="anonymous"></script>
         </div>
 
         <div class="col-md-4">
-          <label for="">ponto focal</label>
-          <select name="" class="form-select">
-            <option value="">copragra</option>
-            <option value="">incol</option>
+          <label for="">Ponto Focal (Empresa) </label>
+          <select class="form-select" name="ponto_focal_id" id="ponto_focal_id" required>
+          <option value=""> Selecione </option>
           </select>
         </div>
 
         <div class="col-md-4 mt-4">
           <label for="">areas</label>
-          <select name="" class="form-select">
-            <option value="">gastronomia</option>
-            <option value="">tecnologia</option>
+          <select class="form-select" name="area_id" required>
+            <option value="">Selecione</option>
+           <?php
+            $areas = mysqli_query($conexao, "SELECT * FROM AREA order by nome");
+            while ($a = mysqli_fetch_assoc($areas)){
+              echo"<option value='{$a['id']}'> {$a['nome']} </option>";
+            }
+            
+            ?>
           </select>
         </div>
 
         <div class="col-md-4 mt-4">
           <label for=""> data da venda</label>
-          <input type="date" class="form-control">
+          <input type="date" class="form-control" name="dtcompra" value="<?=date('Y-m-d')?>">
         </div>
 
         <div class="col-md-4 mt-4">
           <label for=""> origem</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" name="origem">
         </div>
 
         <div class="col-md-12 mt-4">
           <label for="">observacao</label>
-          <textarea name="" class="form-control" rows="20"></textarea>
+          <textarea name="" class="form-control" rows="20" name="obs"></textarea>
         </div>
 
         <div class="md-4 d-flex mt-2"> 
@@ -109,7 +114,20 @@ crossorigin="anonymous"></script>
   <script src="script.js"></script>
   
  <script>
-  $('#regioa_id').on('change',function(){alert("funcionou!");})
+  $('#regiao_id').on('change',function(){
+    var regiaoID = $(this).val();
+    $.post('./backend/venda/buscar_cidades.php' , {regiao_id: regiaoID},
+      function(data){$('#cidade_id').html(data);}
+    );
+  });
+  
+  $('#cidade_id').on('change',function(){
+    var cidadeId = $(this).val();
+    $.post('./backend/venda/buscar_ponto_focal.php' , {cidade_id: cidadeId},
+      function(data){$('#ponto_focal_id').html(data);});
+  });
+
+  });
  </script>
 </body>
 </html>
