@@ -84,7 +84,7 @@ crossorigin="anonymous"></script>
 
         <div class="col-md-12 mt-4">
           <label for="">observacao</label>
-          <textarea name="" class="form-control" rows="20" name="obs"></textarea>
+          <textarea class="form-control" rows="20" name="obs"></textarea>
         </div>
 
         <div class="md-4 d-flex mt-2"> 
@@ -127,7 +127,7 @@ crossorigin="anonymous"></script>
       function(data){$('#ponto_focal_id').html(data);});
   });
 
-  });
+  
  </script>
 </body>
 </html>
